@@ -1,2 +1,24 @@
-<?xml version='1.0' encoding='utf-8'?>
-<plugin id="xpay" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"><name>cordova-xpay</name><js-module name="cordova-xpay" src="www/cordova-xpay.js"><clobbers target="cordova.plugins.cordova-xpay" /></js-module><platform name="android"><config-file parent="/*" target="res/xml/config.xml"><feature name="cordova-xpay"><param name="android-package" value="xpay.cordova-xpay" /></feature></config-file><config-file parent="/*" target="AndroidManifest.xml" /><source-file src="src/android/cordova-xpay.java" target-dir="src/xpay/cordova-xpay" /></platform><platform name="ios"><config-file parent="/*" target="config.xml"><feature name="cordova-xpay"><param name="ios-package" value="cordova-xpay" /></feature></config-file><source-file src="src/ios/cordova-xpay.m" /></platform></plugin>
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="xpay" version="1.0.0">
+  <name>cordova-xpay</name>
+  <js-module name="cordova-xpay" src="www/cordova-xpay.js">
+    <clobbers target="cordova.plugins.cordova-xpay"/>
+  </js-module>
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="cordova-xpay">
+        <param name="android-package" value="xpay.cordova-xpay"/>
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml"/>
+    <source-file src="src/android/cordova-xpay.java" target-dir="src/xpay/cordova-xpay"/>
+  </platform>
+  <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="cordova-xpay">
+        <param name="ios-package" value="cordova-xpay"/>
+      </feature>
+    </config-file>
+    <source-file src="src/ios/cordova-xpay.m"/>
+  </platform>
+</plugin>
