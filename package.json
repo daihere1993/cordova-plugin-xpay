@@ -17,10 +17,6 @@
     "pay",
     "alipay"
   ],
-  "engines": [{
-    "name": "cordova",
-    "version": ">=3.5.0"
-  }],
   "author": "daihere1993<daihere1993@gmail.com>",
   "license": "ISC",
   "bugs": {
