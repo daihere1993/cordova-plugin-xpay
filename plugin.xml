@@ -13,12 +13,30 @@
     <config-file parent="/*" target="AndroidManifest.xml"/>
     <source-file src="src/android/cordova-xpay.java" target-dir="src/xpay/cordova-xpay"/>
   </platform>
+
+  <!-- ios -->
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
       <feature name="cordova-xpay">
         <param name="ios-package" value="cordova-xpay"/>
+        <param name="onload" value="true" />
       </feature>
     </config-file>
-    <source-file src="src/ios/cordova-xpay.m"/>
+
+    <!-- plugin source code -->
+    <header-file src="src/ios/CDVXpay.h"/>
+    <source-file src="src/ios/CDVXpay.m"/>
+
+    <!-- Wechat Official  -->
+    <header-file src="src/ios/libs/OpenSKD1.7.7/WXApi.h"/>
+    <header-file src="src/ios/libs/OpenSKD1.7.7/WXApiObject.h"/>
+    <source-file src="src/ios/libs/OpenSKD1.7.7/libWeChatSKD.a">
+
+    <!-- Other required frameworks -->
+    <framework src="libz.dylib" />
+    <framework src="libsqlite3.0.dylib" />
+    <framework src="SystemConfiguration.framework" />
+    <framework src="Security.framework" />
+    <framework src="libstdc++.6.dylib" />
   </platform>
 </plugin>
