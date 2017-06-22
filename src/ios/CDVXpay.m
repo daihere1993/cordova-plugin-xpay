@@ -6,7 +6,7 @@
 
 #pragma mark "API"
 
-- (void)payment:(CDVInvokedUrlCommand *)command {
+- (void)wxPayment:(CDVInvokedUrlCommand *)command {
     NSDictionary *params = [command.arguments objectAtIndex:0];
     if (!params) {
         [self failWithCallbackID:command.callbackId withMessage:@"参数格式错误"];
