@@ -30,7 +30,7 @@
     <!-- Wechat Official  -->
     <header-file src="src/ios/libs/OpenSKD1.7.7/WXApi.h"/>
     <header-file src="src/ios/libs/OpenSKD1.7.7/WXApiObject.h"/>
-    <source-file src="src/ios/libs/OpenSKD1.7.7/libWeChatSKD.a" />
+    <source-file src="src/ios/libs/OpenSKD1.7.7/libWeChatSDK.a" />
 
     <!-- Other required frameworks -->
     <framework src="libz.dylib" />
