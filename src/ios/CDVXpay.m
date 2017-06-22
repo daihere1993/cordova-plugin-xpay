@@ -16,7 +16,7 @@
     NSArray *paramKeys = @[@"partnerId", @"prepayId", @"timeStamp", @"nonceStr", @"sign"];
 
     PayReq *req = [[PayReq alloc] init];
-    NSString *appid = [params objectForKey:@"appid"];
+    NSString *appid = [params objectForKey:@"appId"];
 
     for (NSString *key in paramKeys) {
         if (![params objectForKey:key]) {
@@ -59,7 +59,6 @@
 - (void)onResp:(BaseResp *)resp {
     BOOL success = NO;
     NSString *message = @"Unkonwn";
-    NSDictionary *response = nil;
 
     switch (resp.errCode) {
         case WXSuccess:
