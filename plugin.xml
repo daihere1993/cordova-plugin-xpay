@@ -17,8 +17,8 @@
   <!-- ios -->
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
-      <feature name="cordova-xpay">
-        <param name="ios-package" value="cordova-xpay"/>
+      <feature name="Xpay">
+        <param name="ios-package" value="CDVXpay"/>
         <param name="onload" value="true" />
       </feature>
     </config-file>

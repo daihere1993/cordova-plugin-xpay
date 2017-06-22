@@ -7,5 +7,5 @@ var xpay = {
 }
 
 exports.coolMethod = function(arg0, success, error) {
-    exec(success, error, "cordova-xpay", "coolMethod", [arg0]);
+    exec(success, error, "Xpay", "coolMethod", [arg0]);
 };
