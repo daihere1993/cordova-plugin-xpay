@@ -16,24 +16,25 @@
     NSArray *paramKeys = @[@"partnerId", @"prepayId", @"timeStamp", @"nonceStr", @"sign"];
 
     PayReq *req = [[PayReq alloc] init];
+    NSString *appid = [params objectForKey:@"appid"];
 
     for (NSString *key in paramKeys) {
         if (![params objectForKey:key]) {
             NSString *errorMsg =  @"参数为空";
-            [self failWithCallbackID:command.callbackId withMessage:[NSString stringWidthFormat:@"%@%@", key, errorMsg]];
+            [self failWithCallbackID:command.callbackId withMessage:[NSString stringWithFormat:@"%@%@", key, errorMsg]];
             return ;
         }
 
-        if (key == @"timeStamp") {
-            req.timeStamp = [[params objectForKey:@"timeStamp"] initValue];
+        if ([key isEqualToString:@"timeStamp"]) {
+            req.timeStamp = [[params objectForKey:@"timeStamp"] intValue];
         } else {
-            req(key) = [params objectForKey:key];
+            [req setValue:[params objectForKey:key] forKey:key];
         }
     }
     req.package = @"Sign=WXPay";
 
     // regist wechat appid
-    [WXApi registerApp:appid]
+    [WXApi registerApp:appid];
 
     if ([WXApi sendReq:req]) {
         self.currentCallbackId = command.callbackId;
@@ -84,7 +85,7 @@
     }
 
     if (success) {
-        if (resp isKindOfClass:[SendAuthResp class]) {
+        if ([resp isKindOfClass:[SendAuthResp class]]) {
              NSString *strMsg = [NSString stringWithFormat:@"支付结果：retcode = %d, retstr = %@", resp.errCode,resp.errStr];
             
             CDVPluginResult *commandResult = nil;
@@ -113,7 +114,7 @@
 - (void)handleOpenURL:(NSNotification *)notification {
     NSURL* url =[notification object];
     
-    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualTosToString:self.wechatAppId]) {
+    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString:self.wechatAppId]) {
         [WXApi handleOpenURL:url delegate:self];
     }
 }
@@ -124,7 +125,7 @@
     [self successWithCallbackID:callbackID withMessage:@"OK"];
 }
 
--(void)successwithCallbackID:(NSString *)callbackID withMessage:(NSString *)message {
+- (void)successWithCallbackID:(NSString *)callbackID withMessage:(NSString *)message {
     CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:message];
     [self.commandDelegate sendPluginResult:commandResult callbackId:callbackID];
 }
@@ -133,9 +134,9 @@
     [self failWithCallbackID:callbackID withMessage:[error localizedDescription]];
 }
 
-- (void)failWithCallbackID:(NSString *)callbackID withMessageL(NSString *)message {
+- (void)failWithCallbackID:(NSString *)callbackID withMessage:(NSString *)message {
     CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:message];
-    [self commandDelegate sendPluginResult:commandResult callbackId:callbackID];
+    [self.commandDelegate sendPluginResult:commandResult callbackId:callbackID];
 }
 
 @end
