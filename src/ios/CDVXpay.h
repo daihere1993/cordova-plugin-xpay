@@ -7,7 +7,7 @@
 @property (nonatomic, strong) NSString *currentCallbackId;
 @property (nonatomic, strong) NSString *wechatAppId;
 
-- (void)payment:(CDVInvokedUrlCommand *)command;
+- (void)wxPayment:(CDVInvokedUrlCommand *)command;
 - (void)registerApp:(NSString *)wechatAppId;
 
 @end
