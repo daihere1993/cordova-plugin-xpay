@@ -12,9 +12,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 // wechat sdk
-import com.tencent.mm.sdk.modelpay.PayReq;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -26,27 +26,32 @@ public class Xpay extends CordovaPlugin {
     protected boolean wxPayment(CordovaArgs args, CallbackContext callbackContext) {
         final IWXAPI wxAPI;
         final JSONObject params;
-        params = args.getJSONObject(0);
-
-        final String[] paramKeys = new String[]{"partnerId", "prepayId", "timeStamp", "nonceStr", "sign"};
+        try {
+            params = args.getJSONObject(0);
+        } catch (JSONException E) {
+          callbackContext.error("参数格式错误");
+          return true;
+        }
 
         PayReq req = new PayReq();
 
-        // regster app
-        String appId = params.getString("appId");
-        wxAPI.registerApp(appId);
-
-        for (int i = 0; i < paramKeys.size(); i++) {
-            String key = paramKeys[i];
-
-            if (params.getString(key) == null) {
-                Log.e(TAG, String.format("%s is empty.", key));
-                callbackContext.error(String.format("%s is empty.", key));
-                return true;
-            }
-            req = params.getString(key);
+        String appId;
+        try {
+            appId = params.getString("appId");
+            req.partnerId = params.getString("partnerId");
+            req.prepayId = params.getString("prepayId");
+            req.nonceStr = params.getString("nonceStr");
+            req.timeStamp = params.getString("timeStamp");
+            req.sign = params.getString("sign");
+            req.packageValue = "Sign=WXPay";
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            callbackContext.error("参数格式错误");
+            return true;
         }
-        req.packageValue = "Sign=WXPay";
+
+        wxAPI = WXAPIFactory.createWXAPI(webView.getContext(), appId, true);
+        wxAPI.registerApp(appId);
 
         if (wxAPI.sendReq(req)) {
             Log.i(TAG, "Payment request has been sent successfully.");
@@ -59,10 +64,13 @@ public class Xpay extends CordovaPlugin {
             // send error
             callbackContext.error("Payment request has been sent unsuccessfully.");
         }
+
+        return true;
     }
 
+
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("wxPayment")) {
             wxPayment(args, callbackContext);
             return true;
