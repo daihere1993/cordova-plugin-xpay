@@ -39,12 +39,12 @@ public class Xpay extends CordovaPlugin {
         for (int i = 0; i < paramKeys.size(); i++) {
             String key = paramKeys[i];
 
-            if (prams[key] == null) {
+            if (params.getString(key) == null) {
                 Log.e(TAG, String.format("%s is empty.", key));
                 callbackContext.error(String.format("%s is empty.", key));
                 return true;
             }
-            req[key] = params.getString(key);
+            req = params.getString(key);
         }
         req.packageValue = "Sign=WXPay";
 
@@ -57,7 +57,7 @@ public class Xpay extends CordovaPlugin {
             Log.i(TAG, "Payment request has been sent unsuccessfully.");
 
             // send error
-            callbackContext.error('Payment request has been sent unsuccessfully.');
+            callbackContext.error("Payment request has been sent unsuccessfully.");
         }
     }
 
