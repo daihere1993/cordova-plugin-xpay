@@ -21,10 +21,10 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
  */
 public class Xpay extends CordovaPlugin {
     public static final String TAG = "Cordova.Pligun.Xpay";
-    protected CallbackContext currentCallbackContext;
+    public static IWXAPI wxAPI;
+    public static CallbackContext currentCallbackContext;
 
     protected boolean wxPayment(CordovaArgs args, CallbackContext callbackContext) {
-        final IWXAPI wxAPI;
         final JSONObject params;
         try {
             params = args.getJSONObject(0);
