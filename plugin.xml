@@ -34,7 +34,7 @@
       </activity>
     </config-file>
     <source-file src="src/android/Xpay.java" target-dir="src/cordova/plugin"/>
-    <source-file src="SRC/android/libammsdk.jar" target-dir="libs"/>
+    <source-file src="src/android/libammsdk.jar" target-dir="libs"/>
   </platform>
 
   <!-- ios -->
