@@ -35,9 +35,8 @@ public class Xpay extends CordovaPlugin {
 
         PayReq req = new PayReq();
 
-        String appId;
         try {
-            appId = params.getString("appId");
+            req.appId = params.getString("appId");
             req.partnerId = params.getString("partnerId");
             req.prepayId = params.getString("prepayId");
             req.nonceStr = params.getString("nonceStr");
@@ -50,8 +49,8 @@ public class Xpay extends CordovaPlugin {
             return true;
         }
 
-        wxAPI = WXAPIFactory.createWXAPI(webView.getContext(), appId, true);
-        wxAPI.registerApp(appId);
+        wxAPI = WXAPIFactory.createWXAPI(webView.getContext(), req.appId, true);
+        wxAPI.registerApp(req.appId);
 
         if (wxAPI.sendReq(req)) {
             Log.i(TAG, "Payment request has been sent successfully.");
