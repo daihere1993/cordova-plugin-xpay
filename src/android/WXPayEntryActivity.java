@@ -1,6 +1,5 @@
 package __PACKAGE_NAME__;
 
-import org.apache.cordova.PluginResult;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -42,29 +41,37 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
   public void onResp(BaseResp resp) {
     Log.d(LOG_TAG, "onPayFinish, errCode = " + resp.errCode);
 
-    if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-      
-    	JSONObject json = new JSONObject();
-    	
-    	try {
-	    	if (resp.errStr != null && resp.errStr.length() >= 0) {
-	    		json.put("errStr", resp.errStr);
-	    	} else {
-	    		json.put("errStr", "");
-	    	}
-	    	json.put("code", resp.errCode);
-    	} catch (Exception e) {
-    		Log.e(LOG_TAG, e.getMessage(), e);
-    	}
+    switch (resp.errCode) {
+      case BaseResp.ErrCode.ERR_OK:
+        switch (resp.getType()) {
+          case ConstantsAPI.COMMAND_SENDAUTH:
+              auth(resp);
+              break;
 
-        PluginResult result = null;
-        if (0 == resp.errCode) {
-          result = new PluginResult(PluginResult.Status.OK, json.toString());
-        } else {
-          result = new PluginResult(PluginResult.Status.ERROR, json.toString());
+          case ConstantsAPI.COMMAND_PAY_BY_WX:
+          default:
+              Xpay.currentCallbackContext.success();
+              break;
         }
-        result.setKeepCallback(true);
-        Xpay.currentCallbackContext.sendPluginResult(result);
+        break;
+      case BaseResp.ErrCode.ERR_USER_CANCEL:
+        Xpay.currentCallbackContext.error("The oder has been cancelled.");
+        break
+      case BaseResp.ErrCode.ERR_AUTH_DENIED:
+        Xpay.currentCallbackContext.error("Authorization failure.");
+        break;
+      case BaseResp.ErrCode.ERR_SENT_FAILED:
+        Xpay.currentCallbackContext.error("Send failure.");
+        break;
+      case BaseResp.ErrCode.ERR_UNSUPPORT:
+        Xpay.currentCallbackContext.error("Wechat not suport.");
+        break;
+      case BaseResp.ErrCode.ERR_COMM:
+        Xpay.currentCallbackContext.error("Common error.");
+        break;
+      default:
+        Xpay.currentCallbackContext.error("Unknow error.");
+        break;
     }
 
     finish();

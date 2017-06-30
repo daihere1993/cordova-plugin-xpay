@@ -24,7 +24,7 @@ public class Xpay extends CordovaPlugin {
     public static IWXAPI wxAPI;
     public static CallbackContext currentCallbackContext;
 
-    protected boolean wxPayment(CordovaArgs args, CallbackContext callbackContext) {
+    protected boolean wechatPayment(CordovaArgs args, CallbackContext callbackContext) {
         final JSONObject params;
         try {
             params = args.getJSONObject(0);
@@ -67,11 +67,10 @@ public class Xpay extends CordovaPlugin {
         return true;
     }
 
-
     @Override
     public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("wxPayment")) {
-            wxPayment(args, callbackContext);
+        if (action.equals("wechatPayment")) {
+            wechatPayment(args, callbackContext);
             return true;
         }
         return false;
