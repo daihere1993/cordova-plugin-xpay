@@ -13,7 +13,7 @@ import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 
-import cordova.plugin.Xpay;
+import daihere.cordova.plugin.Xpay;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
   

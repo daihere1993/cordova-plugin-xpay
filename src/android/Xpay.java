@@ -1,4 +1,4 @@
-package cordova.plugin;
+package daihere.cordova.plugin;
 
 import android.util.Log;
 

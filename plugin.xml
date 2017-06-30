@@ -11,7 +11,7 @@
     <hook type="before_plugin_uninstall" src="scripts/android-install.js" />
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="Xpay">
-        <param name="android-package" value="cordova-plugin-Xpay"/>
+        <param name="android-package" value="daihere.cordova.plugin.Xpay"/>
       </feature>
     </config-file>
 
@@ -33,7 +33,7 @@
         </intent-filter>
       </activity>
     </config-file>
-    <source-file src="src/android/Xpay.java" target-dir="src/cordova/plugin"/>
+    <source-file src="src/android/Xpay.java" target-dir="src/daihere/cordova/plugin"/>
     <source-file src="src/android/libammsdk.jar" target-dir="libs"/>
   </platform>
 
