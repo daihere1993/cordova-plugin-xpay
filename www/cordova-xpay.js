@@ -11,7 +11,6 @@ var xpay = function (params, successFn, failureFn) {
     } else {
         service = 'aliPayment';
     }
-    delete params.type;
 
     exec(successFn, failureFn, 'Xpay', service, [params]);
 }

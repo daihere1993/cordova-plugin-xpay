@@ -6,8 +6,33 @@
 
 #pragma mark "API"
 
-- (void)wxPayment:(CDVInvokedUrlCommand *)command {
+- (void)aliPayment:(CDVInvokedUrlCommand *)command {
+    self.currentCallbackId = command.callbackId;
     NSDictionary *params = [command.arguments objectAtIndex:0];
+    self.appid = [params objectForKey:@"appId"];
+    self.payType = [params objectForKey:@"type"];
+    NSString *orderString = [params objectForKey:@"order"];
+    NSString *appScheme = [NSString stringWithFormat:@"ali%@", app_id];
+    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        CDVPluginResult *pluginResult;
+        
+        if ([[resultDic objectForKey:@"resultStatus"]  isEqual: @"9000"]) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDic];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:self.currentCallbackId];
+        } else {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:resultDic];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:self.currentCallbackId];
+        }
+        
+    }];
+}
+
+
+
+- (void)wechatPayment:(CDVInvokedUrlCommand *)command {
+    NSDictionary *params = [command.arguments objectAtIndex:0];
+    self.appid = [params objectForKey:@"appId"];
+    self.payType = [params objectForKey: @"type"];
     if (!params) {
         [self failWithCallbackID:command.callbackId withMessage:@"参数格式错误"];
         return ;
@@ -16,7 +41,6 @@
     NSArray *paramKeys = @[@"partnerId", @"prepayId", @"timeStamp", @"nonceStr", @"sign"];
 
     PayReq *req = [[PayReq alloc] init];
-    NSString *appid = [params objectForKey:@"appId"];
 
     for (NSString *key in paramKeys) {
         if (![params objectForKey:key]) {
@@ -34,7 +58,7 @@
     req.package = @"Sign=WXPay";
 
     // regist wechat appid
-    [WXApi registerApp:appid];
+    [WXApi registerApp:self.appid];
 
     if ([WXApi sendReq:req]) {
         self.currentCallbackId = command.callbackId;
@@ -42,12 +66,6 @@
         [self failWithCallbackID:command.callbackId withMessage:@"发送失败"];
     }
 
-}
-
-- (void)registerApp:(NSString *)wechatAppId {
-    self.wechatAppId = wechatAppId;
-    [WXApi registerApp:wechatAppId];
-    NSLog(@"Registe wechat app: %@", wechatAppId);
 }
 
 #pragma mark "WXApiDelegate"
@@ -113,8 +131,23 @@
 - (void)handleOpenURL:(NSNotification *)notification {
     NSURL* url =[notification object];
     
-    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString:self.wechatAppId]) {
-        [WXApi handleOpenURL:url delegate:self];
+    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString:self.appid]) {
+        if ([self.payType isEqualToString: @"wechat"]) {
+            [WXApi handleOpenURL:url delegate:self];
+        } else {
+            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+                CDVPluginResult *pluginResult;
+                
+                if ([[resultDic objectForKey:@"resultStatus"]  isEqual: @"9000"]) {
+                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDic];
+                    [self.commandDelegate sendPluginResult: pluginResult callbackId: self.currentCallbackId];
+                } else {
+                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:resultDic];
+                    [self.commandDelegate sendPluginResult: pluginResult callbackId: self.currentCallbackId];
+                }
+            }];
+        }
     }
 }
 

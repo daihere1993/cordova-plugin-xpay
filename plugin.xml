@@ -55,6 +55,10 @@
     <header-file src="src/ios/libs/OpenSDK1.7.7/WXApiObject.h"/>
     <source-file src="src/ios/libs/OpenSDK1.7.7/libWeChatSDK.a" />
 
+    <!-- Alipay Official -->
+    <framework src="src/ios/lib/AlipaySDK.framework" custom="true" />
+    <resource-file src="src/ios/lib/AlipaySDK.bundle"/>
+
     <!-- Other required frameworks -->
     <framework src="libz.dylib" />
     <framework src="libsqlite3.0.dylib" />
