@@ -56,7 +56,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
         break;
       case BaseResp.ErrCode.ERR_USER_CANCEL:
         Xpay.currentCallbackContext.error("The oder has been cancelled.");
-        break
+        break;
       case BaseResp.ErrCode.ERR_AUTH_DENIED:
         Xpay.currentCallbackContext.error("Authorization failure.");
         break;
