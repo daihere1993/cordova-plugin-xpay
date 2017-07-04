@@ -53,7 +53,7 @@
     <!-- Wechat Official  -->
     <header-file src="src/ios/libs/OpenSDK1.7.7/WXApi.h"/>
     <header-file src="src/ios/libs/OpenSDK1.7.7/WXApiObject.h"/>
-    <source-file src="src/ios/libs/OpenSDK1.7.7/libWeChatSDK.a" />
+    <source-file src="src/ios/libs/OpenSDK1.7.7/libWeChatSDK.a"  framework="true"/>
 
     <!-- Alipay Official -->
     <framework src="src/ios/libs/AlipaySDK.framework" custom="true" />
