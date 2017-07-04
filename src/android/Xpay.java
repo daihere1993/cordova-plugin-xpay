@@ -7,7 +7,6 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CallbackContext;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,6 +16,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.widget.Toast;
+import android.util.Log;
 import android.annotation.SuppressLint;
 
 // alipay sdk
@@ -37,13 +37,15 @@ public class Xpay extends CordovaPlugin {
 
     private static final int SDK_PAY_FLAG = 1;
 
-    protected  boolean aliPayment(String orderInfo, CallbackContext callbackContext) {
-        cordova.getTheadPool().execute(new Runable() {
-           @Override
+    protected  boolean aliPayment(String orderInfo, final CallbackContext callbackContext) {
+        final String payInfo = orderInfo;
+
+        cordova.getThreadPool().execute(new Runnable() {
+            @Override
             public void run() {
                PayTask alipay = new PayTask(cordova.getActivity());
-               Map<String, String>result = alipay.payV2(orderInfo, true);
-               Log("msp", result.toString());
+               Map<String, String>result = alipay.payV2(payInfo, true);
+               Log.i("msp", result.toString());
 
                Message msg = new Message();
                msg.what = SDK_PAY_FLAG;
@@ -63,6 +65,8 @@ public class Xpay extends CordovaPlugin {
                }
            }
         });
+
+        return true;
     }
 
     @SuppressLint("HandlerLeak")

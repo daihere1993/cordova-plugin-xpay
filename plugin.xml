@@ -35,6 +35,7 @@
     </config-file>
     <!-- plugin source code -->
     <source-file src="src/android/Xpay.java" target-dir="src/daihere/cordova/plugin"/>
+    <source-file src="src/android/PayResult.java" target-dir="src/daihere/cordova/plugin"/>
 
     <!-- Wechat libs -->
     <source-file src="src/android/libs/wechatSDK.jar" target-dir="libs"/>
