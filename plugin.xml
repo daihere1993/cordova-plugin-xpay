@@ -62,8 +62,12 @@
     <!-- Other required frameworks -->
     <framework src="libz.dylib" />
     <framework src="libsqlite3.0.dylib" />
-    <framework src="SystemConfiguration.framework" />
-    <framework src="Security.framework" />
+    <framework src="SystemConfiguration.framework" weak="true"/>
     <framework src="libstdc++.6.dylib" />
+    <framework src="libc++.tbd" weak="true"/>
+    <framework src="CFNetwork.framework" weak="true"/>
+    <framework src="CoreMotion.framework" weak="true"/>
+    <framework src="Security.framework" weak="true"/>
+    <framework src="CoreTelephony.framework" weak="true"/>
   </platform>
 </plugin>

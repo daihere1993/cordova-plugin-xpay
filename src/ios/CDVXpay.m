@@ -12,7 +12,7 @@
     self.appid = [params objectForKey:@"appId"];
     self.payType = [params objectForKey:@"type"];
     NSString *orderString = [params objectForKey:@"order"];
-    NSString *appScheme = [NSString stringWithFormat:@"ali%@", app_id];
+    NSString *appScheme = [NSString stringWithFormat:@"ali%@", self.appid];
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         CDVPluginResult *pluginResult;
         
