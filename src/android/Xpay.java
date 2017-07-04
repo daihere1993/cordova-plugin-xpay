@@ -13,9 +13,14 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.widget.Toast;
+import android.annotation.SuppressLint;
+
+// alipay sdk
+import com.alipay.sdk.app.PayTask;
 
 // wechat sdk
 import com.tencent.mm.opensdk.modelpay.PayReq;

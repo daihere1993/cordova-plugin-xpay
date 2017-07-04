@@ -10,6 +10,7 @@ import android.util.Log;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 
 import daihere.cordova.plugin.Xpay;
@@ -75,5 +76,30 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
     }
 
     finish();
+  }
+
+  protected void auth(BaseResp resp) {
+    SendAuth.Resp res = ((SendAuth.Resp) resp);
+
+    Log.d(Wechat.TAG, res.toString());
+
+    // get current callback context
+    CallbackContext ctx = Wechat.getCurrentCallbackContext();
+
+    if (ctx == null) {
+      return ;
+    }
+
+    JSONObject response = new JSONObject();
+    try {
+      response.put("code", res.code);
+      response.put("state", res.state);
+      response.put("country", res.country);
+      response.put("lang", res.lang);
+    } catch (JSONException e) {
+      Log.e(Wechat.TAG, e.getMessage());
+    }
+
+    ctx.success(response);
   }
 }
