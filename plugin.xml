@@ -33,8 +33,14 @@
         </intent-filter>
       </activity>
     </config-file>
+    <!-- plugin source code -->
     <source-file src="src/android/Xpay.java" target-dir="src/daihere/cordova/plugin"/>
-    <source-file src="src/android/libammsdk.jar" target-dir="libs"/>
+
+    <!-- Wechat libs -->
+    <source-file src="src/android/libs/wechatSDK.jar" target-dir="libs"/>
+
+    <!-- Alipay libs -->
+    <source-file src="src/android/libs/alipaySDK.jar" target-dir="libs"/>
   </platform>
 
   <!-- ios -->
@@ -50,12 +56,12 @@
     <header-file src="src/ios/CDVXpay.h"/>
     <source-file src="src/ios/CDVXpay.m"/>
 
-    <!-- Wechat Official  -->
+    <!-- Wechat libs  -->
     <header-file src="src/ios/libs/OpenSDK1.7.7/WXApi.h"/>
     <header-file src="src/ios/libs/OpenSDK1.7.7/WXApiObject.h"/>
     <source-file src="src/ios/libs/OpenSDK1.7.7/libWeChatSDK.a"  framework="true"/>
 
-    <!-- Alipay Official -->
+    <!-- Alipay libs -->
     <framework src="src/ios/libs/AlipaySDK.framework" custom="true" />
     <resource-file src="src/ios/libs/AlipaySDK.bundle"/>
 
