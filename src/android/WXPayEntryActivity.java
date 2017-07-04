@@ -1,4 +1,4 @@
-package __PACKAGE_NAME__;
+package com.ionicframework.buscardapp907554.wxapi;
 
 import org.json.JSONObject;
 
@@ -12,6 +12,9 @@ import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+
+import org.apache.cordova.CallbackContext;
+import org.json.JSONException;
 
 import daihere.cordova.plugin.Xpay;
 
@@ -81,10 +84,10 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
   protected void auth(BaseResp resp) {
     SendAuth.Resp res = ((SendAuth.Resp) resp);
 
-    Log.d(Wechat.TAG, res.toString());
+    Log.d(Xpay.TAG, res.toString());
 
     // get current callback context
-    CallbackContext ctx = Wechat.getCurrentCallbackContext();
+    CallbackContext ctx = Xpay.currentCallbackContext;
 
     if (ctx == null) {
       return ;
@@ -97,7 +100,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
       response.put("country", res.country);
       response.put("lang", res.lang);
     } catch (JSONException e) {
-      Log.e(Wechat.TAG, e.getMessage());
+      Log.e(Xpay.TAG, e.getMessage());
     }
 
     ctx.success(response);
