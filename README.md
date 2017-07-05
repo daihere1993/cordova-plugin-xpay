@@ -40,7 +40,7 @@ xpay(params, function() {
 ```Javascript
 var params = {
     type: 'alipay',
-    order: 'response": "alipay_sdk=alipay-sdk-java-dynamicVersionNo&app_id=2017062907602740&...", // this string return by back-end
+    order: 'alipay_sdk=alipay-sdk-java-dynamicVersionNo&app_id=2017062907602740&...', // this string return by back-end
     appId: '017062907602740'
 }
 
