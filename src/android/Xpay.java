@@ -37,7 +37,7 @@ public class Xpay extends CordovaPlugin {
 
     private static final int SDK_PAY_FLAG = 1;
 
-    protected  boolean aliPayment(String orderInfo, final CallbackContext callbackContext) {
+    protected  void aliPayment(String orderInfo, final CallbackContext callbackContext) {
         final String payInfo = orderInfo;
 
         cordova.getThreadPool().execute(new Runnable() {
@@ -65,8 +65,6 @@ public class Xpay extends CordovaPlugin {
                }
            }
         });
-
-        return true;
     }
 
     @SuppressLint("HandlerLeak")
@@ -144,11 +142,13 @@ public class Xpay extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException {
+        final JSONObject params;
         if (action.equals("wechatPayment")) {
             wechatPayment(args, callbackContext);
             return true;
         } else if (action.equals("aliPayment")) {
-            String orderInfo = args.getString(0);
+            params = args.getJSONObject(0);
+            String orderInfo = params.getString("order");
             aliPayment(orderInfo, callbackContext);
             return true;
         }
