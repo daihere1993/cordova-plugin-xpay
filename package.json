@@ -1,14 +1,14 @@
 {
-  "name": "cordova-xpay",
+  "name": "cordova-plugin-xpay",
   "version": "1.0.0",
   "description": "A cordova plugin about wechat pay and alipay",
   "cordova": {
-    "id": "cordova-xpay",
+    "id": "cordova-plugin-xpay",
     "platforms": ["ios", "android"]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daihere1993/cordova-xpay.git"
+    "url": "git+https://github.com/daihere1993/cordova-plugin-xpay.git"
   },
   "keywords": [
     "cordova",
