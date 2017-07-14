@@ -27,8 +27,6 @@
     }];
 }
 
-
-
 - (void)wechatPayment:(CDVInvokedUrlCommand *)command {
     NSDictionary *params = [command.arguments objectAtIndex:0];
     self.appid = [params objectForKey:@"appId"];
@@ -129,9 +127,14 @@
 #pragma mark "CDVPlugin Overrides"
 
 - (void)handleOpenURL:(NSNotification *)notification {
-    NSURL* url =[notification object];
-    
-    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString:self.appid]) {
+    NSURL *url =[notification object];
+    NSString *schemeStr;
+    if ([self.payType isEqualToString:@"alipay"]) {
+        schemeStr = [NSString stringWithFormat:@"ali%@", self.appid];
+    } else {
+        schemeStr = self.appid;
+    }
+    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString:schemeStr]) {
         if ([self.payType isEqualToString: @"wechat"]) {
             [WXApi handleOpenURL:url delegate:self];
         } else {
