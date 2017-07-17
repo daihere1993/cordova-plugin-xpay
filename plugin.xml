@@ -57,20 +57,20 @@
       <array>
         <dict>
           <key>CFBundleURLName</key>
+          <string>weixin</string>
           <key>CFBundleURLSchemes</key>
           <array>
             <string>$WECHATAPPID</string>
-            <string>$ALIAPPID</string>
           </array>
         </dict>
-        <!--<dict>
+        <dict>
           <key>CFBundleURLName</key>
           <string>alipay</string>
           <key>CFBundleURLSchemes</key>
           <array>
             <string>$ALIAPPID</string>
           </array>
-        </dict>-->
+        </dict>
       </array>
     </config-file>
     <preference name="WECHATAPPID" value="$WECHATAPPID" />
