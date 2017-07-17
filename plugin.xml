@@ -54,6 +54,8 @@
         <param name="ios-package" value="CDVXpay"/>
         <param name="onload" value="true" />
       </feature>
+      <preference name="WECHATAPPID" value="$WECHATAPPID" />
+      <preference name="ALIAPPID" value="$ALIAPPID" />
     </config-file>
 
     <config-file target="*-Info.plist" parent="CFBundleURLTypes">
@@ -76,8 +78,6 @@
         </dict>
       </array>
     </config-file>
-    <preference name="WECHATAPPID" value="$WECHATAPPID" />
-    <preference name="ALIAPPID" value="$ALIAPPID" />
 
     <!-- plugin source code -->
     <header-file src="src/ios/CDVXpay.h"/>
