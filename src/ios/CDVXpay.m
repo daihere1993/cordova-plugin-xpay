@@ -130,9 +130,9 @@
     NSURL *url =[notification object];
     NSString *schemeStr;
     if ([self.payType isEqualToString:@"alipay"]) {
-        schemeStr = [NSString stringWithFormat:@"ali%@", self.appid];
+        schemeStr = [[self.commandDelegate settings] objectForKey:@"aliappid"];
     } else {
-        schemeStr = self.appid;
+        schemeStr = [[self.commandDelegate settings] objectForKey:@"wechatappid"];
     }
     if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString:schemeStr]) {
         if ([self.payType isEqualToString: @"wechat"]) {
