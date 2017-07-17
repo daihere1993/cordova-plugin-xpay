@@ -56,16 +56,12 @@
     <config-file target="*-Info.plist" parent="CFBundleURLTypes">
       <array>
         <dict>
-          <!--<key>CFBundleURLName</key>
-          <string>weixin</string>
+          <key>CFBundleURLName</key>
           <key>CFBundleURLSchemes</key>
           <array>
             <string>$WECHATAPPID</string>
-          </array>-->
-          <key>weixin</key>
-          <string>$WECHATAPPID</string>
-          <key>alipay</key>
-          <string>$ALIAPPID</string>
+            <string>$ALIAPPID</string>
+          </array>
         </dict>
         <!--<dict>
           <key>CFBundleURLName</key>
@@ -78,7 +74,7 @@
       </array>
     </config-file>
     <preference name="WECHATAPPID" value="$WECHATAPPID" />
-    <!--<preference name="ALIAPPID" value="$ALIAPPID" />-->
+    <preference name="ALIAPPID" value="$ALIAPPID" />
 
     <!-- plugin source code -->
     <header-file src="src/ios/CDVXpay.h"/>
