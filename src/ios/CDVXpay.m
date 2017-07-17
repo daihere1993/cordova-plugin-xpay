@@ -12,7 +12,7 @@
     self.appid = [params objectForKey:@"appId"];
     self.payType = [params objectForKey:@"type"];
     NSString *orderString = [params objectForKey:@"order"];
-    NSString *appScheme = [NSString stringWithFormat:@"ali%@", self.appid];
+    NSString *appScheme = [[self.commandDelegate settings] objectForKey:@"aliappid"];
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         CDVPluginResult *pluginResult;
         
@@ -29,7 +29,7 @@
 
 - (void)wechatPayment:(CDVInvokedUrlCommand *)command {
     NSDictionary *params = [command.arguments objectAtIndex:0];
-    self.appid = [params objectForKey:@"appId"];
+    self.appid = [[self.commandDelegate settings] objectForKey:@"wechatappid"];;
     self.payType = [params objectForKey: @"type"];
     if (!params) {
         [self failWithCallbackID:command.callbackId withMessage:@"参数格式错误"];
