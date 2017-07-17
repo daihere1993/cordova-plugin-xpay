@@ -9,7 +9,6 @@
 - (void)aliPayment:(CDVInvokedUrlCommand *)command {
     self.currentCallbackId = command.callbackId;
     NSDictionary *params = [command.arguments objectAtIndex:0];
-    self.appid = [params objectForKey:@"appId"];
     self.payType = [params objectForKey:@"type"];
     NSString *orderString = [params objectForKey:@"order"];
     NSString *appScheme = [[self.commandDelegate settings] objectForKey:@"aliappid"];
