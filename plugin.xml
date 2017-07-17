@@ -56,12 +56,16 @@
     <config-file target="*-Info.plist" parent="CFBundleURLTypes">
       <array>
         <dict>
-          <key>CFBundleURLName</key>
+          <!--<key>CFBundleURLName</key>
           <string>weixin</string>
           <key>CFBundleURLSchemes</key>
           <array>
             <string>$WECHATAPPID</string>
-          </array>
+          </array>-->
+          <key>weixin</key>
+          <string>$WECHATAPPID</string>
+          <key>alipay</key>
+          <string>$ALIAPPID</string>
         </dict>
         <!--<dict>
           <key>CFBundleURLName</key>
