@@ -63,18 +63,18 @@
             <string>$WECHATAPPID</string>
           </array>
         </dict>
-        <dict>
+        <!--<dict>
           <key>CFBundleURLName</key>
           <string>alipay</string>
           <key>CFBundleURLSchemes</key>
           <array>
             <string>$ALIAPPID</string>
           </array>
-        </dict>
+        </dict>-->
       </array>
     </config-file>
     <preference name="WECHATAPPID" value="$WECHATAPPID" />
-    <preference name="ALIAPPID" value="$ALIAPPID" />
+    <!--<preference name="ALIAPPID" value="$ALIAPPID" />-->
 
     <!-- plugin source code -->
     <header-file src="src/ios/CDVXpay.h"/>
