@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-xpay",
-  "version": "1.6.2",
+  "version": "1.6.4",
   "description": "A cordova plugin about wechat pay and alipay",
   "cordova": {
     "id": "cordova-plugin-xpay",

@@ -11,7 +11,7 @@
     NSDictionary *params = [command.arguments objectAtIndex:0];
     self.payType = [params objectForKey:@"type"];
     NSString *orderString = [params objectForKey:@"order"];
-    NSString *appScheme = [[self.commandDelegate settings] objectForKey:@"aliappid"];
+    NSString *appScheme = [@"ali" stringByAppendingString:[[self.commandDelegate settings] objectForKey:@"aliappid"]];
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         CDVPluginResult *pluginResult;
         
@@ -129,7 +129,7 @@
     NSURL *url =[notification object];
     NSString *schemeStr;
     if ([self.payType isEqualToString:@"alipay"]) {
-        schemeStr = [[self.commandDelegate settings] objectForKey:@"aliappid"];
+        schemeStr = [@"ali" stringByAppendingString:[[self.commandDelegate settings] objectForKey:@"aliappid"]];
     } else {
         schemeStr = [[self.commandDelegate settings] objectForKey:@"wechatappid"];
     }
