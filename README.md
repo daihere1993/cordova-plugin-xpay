@@ -10,11 +10,15 @@ A cordova plugin about app pay way, suport alipay and wechat.
 # Example
 wait
 # Install
-```cordova plugin add cordova-plugin-xpay --variable wechatappid=YOUT_WECHATAPPID --variable aliappid=YOUT_ALIPAYAPPID```
+```bash
+cordova plugin add cordova-plugin-xpay --variable wechatappid=YOUT_WECHATAPPID --variable aliappid=YOUT_ALIPAYAPPID
+```
 
 or
 
-```ionic plugin add cordova-plugin-xpay --variable wechatappid=YOUT_WECHATAPPID --variable aliappid=YOUT_ALIPAYAPPID```
+```bash
+ionic plugin add cordova-plugin-xpay --variable wechatappid=YOUT_WECHATAPPID --variable aliappid=YOUT_ALIPAYAPPID
+```
 
 # Usage
 
