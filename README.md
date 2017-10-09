@@ -7,8 +7,6 @@ A cordova plugin about app pay way, suport alipay and wechat.
 - Wechat payment for app.
 -  Ali payment for app.
 
-# Example
-wait
 # Install
 ```bash
 cordova plugin add cordova-plugin-xpay --variable wechatappid=YOUT_WECHATAPPID --variable aliappid=YOUT_ALIPAYAPPID
@@ -55,6 +53,11 @@ xpay(params, function() {
     console.log(error);
 });
 ```
+## Tip
+
+> If you just want realize ali and wechat payment in your app, this plugin is enough. 
+> If your needs another wechat function, suggest use [cordova-plugin-x-alipay](https://github.com/daihere1993/cordova-plugin-x-alipay) and [cordova-plugin-wechat](https://github.com/xu-li/cordova-plugin-wechat).
+
 # LICENSE
 
 [MIT LICENSE](http://opensource.org/licenses/MIT)
