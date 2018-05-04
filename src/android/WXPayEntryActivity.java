@@ -1,4 +1,4 @@
-package com.ionicframework.buscardapp907554.wxapi;
+package __PACKAGE_NAME__;
 
 import org.json.JSONObject;
 
