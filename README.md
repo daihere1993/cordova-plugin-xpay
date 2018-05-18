@@ -2,7 +2,7 @@
 
 A cordova plugin about app pay way, suport alipay and wechat.
 
-# Feature
+# Features
 
 - Wechat payment for app.
 -  Ali payment for app.
