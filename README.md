@@ -25,6 +25,7 @@ ionic plugin add cordova-plugin-xpay --variable wechatappid=YOUT_WECHATAPPID --v
 ```Javascript
 var params = {
     type: 'wechat',
+    appId: 'wx0123456789', // appid
     partnerid: '10000100', // merchant id
     prepayid: 'wx201411101639507cbf6ffd8b0779950874', // prepay id
     noncestr: '1add1a30ac87aa2db72f57a2375d8fec', // nonce
